@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { SubmitFormButton } from './styles';
 
-const SubmitButton = (props) => {
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-        props.handleSubmit();
+class SubmitButton extends Component {
+    state = {
+        submitButtonText: 'submit'
     }
-    return (
-        <SubmitFormButton className={props.selected.length < 3 ? 'disabled' : ''} onClick={e => onSubmitHandler(e)}>
-            Submit
-        </SubmitFormButton>
-    );
+    onSubmitHandler(e) {
+        e.preventDefault();
+        this.setState({ submitButtonText: 'submitting...' });
+        new Promise((resolve, reject) => {
+            return setTimeout(() => {
+                resolve();
+            }, 1500);
+        }).then(() => {
+            this.setState({ submitButtonText: 'submitted!' });
+            setTimeout(() => window.location.reload(true), 1000);
+        })
+    }
+
+    render() {
+        const { submitButtonText } = this.state;
+        return (
+            <SubmitFormButton className={this.props.selected.length < 3 ? 'disabled' : ''} onClick={e => this.onSubmitHandler(e)}>
+                {submitButtonText}
+            </SubmitFormButton>
+        )
+    }
 }
 
 export default SubmitButton;
