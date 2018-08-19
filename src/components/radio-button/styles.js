@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+/*
+    Credits to https://codepen.io/Zerk/ for the design of the radio buttons.
+    Codepen link for the design of the radio buttons: https://codepen.io/Zerk/pen/mWNXVy
+*/
+
 export const ButtonsContainer = styled.ul`
     list-style: none;
     padding-left: 20px;
