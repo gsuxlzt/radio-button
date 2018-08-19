@@ -6,8 +6,8 @@ export const ButtonsContainer = styled.ul`
     padding-right: 20px;
     border: 2px solid #debea0;
     &.disabled {
-        color: #bcb4ba !important;
-        border: 2px solid #bcb4ba !important;
+        color: #bcb4ba ;
+        border: 2px solid #bcb4ba;
    }
    align-self: stretch;
    flex: 1;
@@ -34,18 +34,18 @@ export const ButtonInput = styled.input`
     opacity: 0;
     visibility: hidden;
     &:disabled + label {
-        color: #bcb4ba !important;
+        color: #bcb4ba;
     }
     &:disabled +label:hover {
-        font-size: 1rem !important;
+        font-size: 1rem;
     }
     &:disabled + label:hover:before {
-        border: 0.25rem solid #bcb4ba !important;
-        margin-right: 0.5rem !important;
+        border: 0.25rem solid #bcb4ba;
+        margin-right: 0.5rem;
 
     }
     &:disabled + label:before {
-        border: 0.25rem solid #bcb4ba !important;
+        border: 0.25rem solid #bcb4ba;
     }
     &:checked + label {
         color: #362247;
