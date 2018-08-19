@@ -6,6 +6,12 @@ export const ButtonsForm = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 25%;
+    max-width: 90%;
+    @media only screen and (min-width: 426px) {
+        max-width: 50%;
+    }
+    @media only screen and (min-width: 769px) {
+        max-width: 25%;
+    }
 
 `;
