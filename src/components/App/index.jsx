@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import RadioButton from '../radio-button';
+import SubmitButton from '../submit-button';
+import SubmittedScreen from '../submitted-screen';
 import { ButtonsForm } from './styles.js';
 
 class App extends Component {
@@ -44,7 +46,8 @@ class App extends Component {
 		this.state = {
 			foodArray,
 			foodCompatibility,
-			selected: []
+			selected: [],
+			displaySubmittedScreen: false
 		}
 	}
 
@@ -67,21 +70,29 @@ class App extends Component {
 			return item;
 		});
 		this.setState({ selected: newArr });
-
 	}
+	handleSubmit() {
+		this.setState({ displaySubmittedScreen: !this.state.displaySubmittedScreen })
+	}
+
 	render() {
-		const { foodArray, selected, foodCompatibility } = this.state;
+		const { displaySubmittedScreen, foodArray, selected, foodCompatibility } = this.state;
+		const buttonsForm = (<ButtonsForm>
+			{foodArray.map((food, index) => <RadioButton key={index}
+				handleClick={this.handleClick.bind(this)}
+				food={food} selected={selected}
+				foodCompatibility={foodCompatibility}
+				sliceSelected={this.sliceSelected.bind(this)}
+				group={`food-${index}`}
+			/>
+			)}
+			<SubmitButton selected={selected} handleSubmit={this.handleSubmit.bind(this)} />
+		</ButtonsForm>)
+		const submittedScreen = <SubmittedScreen />
 		return (
-			<ButtonsForm>
-				{foodArray.map((food, index) => <RadioButton key={index}
-					handleClick={this.handleClick.bind(this)}
-					food={food} selected={selected}
-					foodCompatibility={foodCompatibility}
-					sliceSelected={this.sliceSelected.bind(this)}
-					group={`food-${index}`}
-				/>
-				)}
-			</ButtonsForm>
+			<div>
+				{displaySubmittedScreen ? submittedScreen : buttonsForm}
+			</div>
 		)
 	}
 }
