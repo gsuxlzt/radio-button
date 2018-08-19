@@ -9,8 +9,7 @@ class RadioButton extends Component {
     onRadioButtonClick(e, toPush) {
         if (e.target.parentNode.querySelector('input').disabled) e.preventDefault();
         else {
-            this.setState({ checked: toPush.id })
-            this.props.handleClick(e, toPush);
+            this.setState({ checked: toPush.id }, () => this.props.handleRadioButtonClick(e, toPush));
         }
     }
 
