@@ -2,9 +2,15 @@ import styled from 'styled-components';
 
 export const ButtonsContainer = styled.ul`
     list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 2px solid #debea0;
     &.disabled {
         color: #bcb4ba !important;
+        border: 2px solid #bcb4ba !important;
    }
+   align-self: stretch;
+   flex: 1;
 `;
 
 export const ButtonContainer = styled.li`

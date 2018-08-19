@@ -19,7 +19,12 @@ class RadioButton extends Component {
         const { sliceSelected, group } = this.props;
         if (this.determineIfDisabled(false, checked)) {
             const toSlice = group.split('-')[1];
+            this.setState({ checked: null });
             sliceSelected(toSlice);
+        }
+        const isDisabled = this.checkIfDisabled();
+        if (isDisabled && this.state.checked) {
+            this.setState({ checked: null });
         }
 
     }
@@ -36,12 +41,18 @@ class RadioButton extends Component {
         return shouldDisable;
     }
 
-    render() {
-        const { food, group, selected } = this.props;
+    checkIfDisabled() {
+        const { group, selected } = this.props;
         const index = group.split('-')[1];
-        const isDisabled = index > 0 && index > selected.length;
+        return index > 0 && index > selected.length;
 
-        const className = index === 0 ? '' : isDisabled ? 'disabled' : '';
+
+    }
+
+    render() {
+        const { food, group } = this.props;
+        const isDisabled = this.checkIfDisabled();
+        const className = group.split('-')[1] === 0 ? '' : isDisabled ? 'disabled' : '';
         return (
             <ButtonsContainer className={className}>
                 {food.map((item, index) => (
